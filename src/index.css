@@ -1,0 +1,32 @@
+:root {
+  --bg-color: #f0f0f0;
+  --primary-color: #000;
+  --secondary-color: rgb(52, 133, 255);
+}
+
+html {
+  height: 100vh;
+}
+
+body {
+  height: 100vh;
+  box-sizing: border-box;
+  font-family: Jost;
+  font-weight: 300;
+  background-color: var(--bg-color);
+  color: var(--primary-color);
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+@media only screen and (min-width: 768px) {
+  #root {
+    align-items: center;
+  }
+}
