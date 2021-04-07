@@ -8,7 +8,7 @@ const App = () => {
   return (
     <Router>
       <Header />
-      <Container>
+      <Container style={{ backgroundColor: '#f0f0f0' }}>
         <Switch>
           <Route path='/' component={HomePage} />
         </Switch>

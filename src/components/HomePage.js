@@ -7,7 +7,7 @@ import {
   InputGroup,
   FormControl,
   FormGroup,
-  Form
+  Form,
 } from 'react-bootstrap'
 import axios from 'axios'
 
@@ -24,11 +24,11 @@ const HomePage = () => {
         // I know this
         headers: {
           'secret-key':
-            '$2b$10$K55R6SYBnHhcAtQDICDOZ.A1amDSnRt9FVAeHHpbcsvU011heVOEm'
-        }
+            '$2b$10$K55R6SYBnHhcAtQDICDOZ.A1amDSnRt9FVAeHHpbcsvU011heVOEm',
+        },
       }
       const {
-        data: { elements }
+        data: { elements },
       } = await axios.get(
         'https://api.jsonbin.io/b/6069c3ad6397691864735be9',
         config
@@ -41,7 +41,7 @@ const HomePage = () => {
 
   useEffect(() => {
     const getElementDetails = () => {
-      const reqData = results.filter(e => e.number === Number(atomicNum))
+      const reqData = results.filter((e) => e.number === Number(atomicNum))
 
       if (reqData.length !== 0) setElDetails(reqData[0])
     }
@@ -70,7 +70,7 @@ const HomePage = () => {
     electron_configuration_semantic,
     electron_affinity,
     electronegativity_pauling,
-    ionization_energies
+    ionization_energies,
   } = elDetails
 
   return (
@@ -89,7 +89,7 @@ const HomePage = () => {
         </Form.Label>
         <Form.Control
           as='select'
-          onChange={e => setAtomicNum(e.target.value)}
+          onChange={(e) => setAtomicNum(e.target.value)}
           defaultValue='Select Element'
         >
           <option>Select Element</option>
@@ -108,7 +108,7 @@ const HomePage = () => {
         </InputGroup.Prepend>
         <FormControl
           type='number'
-          onChange={e => setAtomicNum(e.target.value)}
+          onChange={(e) => setAtomicNum(e.target.value)}
           id='basic-url'
           aria-describedby='basic-addon3'
         />
@@ -151,7 +151,15 @@ const HomePage = () => {
             </div>
             <div className='p-2'>
               <h6 className='m-0'>
-                {electron_configuration ? electron_configuration : 'NA'}
+                {electron_configuration &&
+                  electron_configuration.split(' ').map((e) => (
+                    <>
+                      <p style={{ display: 'inline' }}>
+                        {e.slice(0, 2)}
+                        <sup>{e.slice(2, e.length)}</sup>{' '}
+                      </p>
+                    </>
+                  ))}
               </h6>
             </div>
           </section>
@@ -227,7 +235,7 @@ const HomePage = () => {
                 <td>Ionization Energies</td>
                 <td>
                   {ionization_energies
-                    ? ionization_energies.map(i => (
+                    ? ionization_energies.map((i) => (
                         <p style={{ display: 'inline' }}>{`${i}, `}</p>
                       ))
                     : 'NA'}
@@ -237,7 +245,7 @@ const HomePage = () => {
                 <td>Shells</td>
                 <td>
                   {shells
-                    ? shells.map(s => (
+                    ? shells.map((s) => (
                         <p style={{ display: 'inline' }}>{`${s} `}</p>
                       ))
                     : 'NA'}
